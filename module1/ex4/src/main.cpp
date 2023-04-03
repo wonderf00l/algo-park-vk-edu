@@ -6,7 +6,7 @@
 // полезная команда для сборки: g++ -c -Wextra -Wall -Werror -std=c++17 -fsanitize=address *.cpp && g++ -Wextra -Wall -Werror -fsanitize=address *.o -o executable
 // g++ -o executable -Wextra -Wall -Werror -std=c++17 -fsanitize=address *.cpp -I./
 int main() {
-    Heap<int> h;
+    Heap<int, DefaultComparator<int>> h = Heap<int, DefaultComparator<int>>();
 
     //Heap<int, DefaultComparator<int>> he = Heap<int, DefaultComparator<int>>(5);
 
