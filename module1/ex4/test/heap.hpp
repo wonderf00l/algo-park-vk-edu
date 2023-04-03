@@ -1,6 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm>
+#include <cassert>
+
 #include "comp.hpp"
 
 template <typename T, typename Comparator = DefaultComparator<T>>  // should do default comp
@@ -17,7 +20,7 @@ class Heap {
     size_t heap_size;
     size_t heap_capacity;
 
-   public:
+   publicё:
     Heap(size_t init_size = 1, Comparator comparator = Comparator());
     Heap(const T* some_buf, size_t some_buf_size, Comparator comparator = Comparator());
     Heap(const Heap<T, Comparator>& other);
@@ -34,4 +37,4 @@ class Heap {
     ~Heap();
 };
 
-#include "heap.cpp"
+// #include "heap.cpp"
