@@ -1,7 +1,7 @@
 //Дан отсортированный массив целых чисел A[0..n-1] и массив целых чисел B[0..m-1]. Для каждого элемента
 //массива B[i] найдите минимальный индекс k минимального элемента массива A, равного или превосходящего B[i]:
-//A[k] >= B[i]. Если такого элемента нет, выведите n. Время работы поиска k для каждого элемента B[i]:
-//O(log(k)). n, m ≤ 10000.
+// A[k] >= B[i]. Если такого элемента нет, выведите n. Время работы поиска k для каждого элемента B[i]:
+// O(log(k)). n, m ≤ 10000.
 
 #include <cassert>
 #include <iostream>
@@ -11,20 +11,20 @@
 
 void input_size(size_t &a_size, std::istream &input_stream) { input_stream >> a_size; }
 
-void fill_arr(std::vector<unsigned int> &arr, std::istream &input_stream) {
-    for (unsigned int &item : arr) {
+void fill_arr(std::vector<long long int> &arr, std::istream &input_stream) {
+    for (long long int &item : arr) {
         input_stream >> item;
     }
 }
 
-template <typename T = unsigned int>
+template <typename T = long long int>
 void output(const std::vector<T> &arr, std::ostream &output_stream) {
     for (size_t i = 0; i != arr.size(); ++i) {
         i != arr.size() - 1 ? output_stream << arr[i] << ' ' : output_stream << arr[i] << std::endl;
     }
 }
 
-std::pair<size_t, size_t> exp_search(const std::vector<unsigned int> &arr, unsigned int item) {
+std::pair<size_t, size_t> exp_search(const std::vector<long long int> &arr, long long int item) {
     assert(arr.size());
 
     size_t left = 0, right = 1;
@@ -46,7 +46,7 @@ std::pair<size_t, size_t> exp_search(const std::vector<unsigned int> &arr, unsig
     return std::make_pair(left, right + 1);
 }
 
-size_t lower_bound(const std::vector<unsigned int> &arr, size_t left, size_t right, unsigned int item) {
+size_t lower_bound(const std::vector<long long int> &arr, size_t left, size_t right, long long int item) {
     assert(right <= arr.size());
 
     while (left < right) {
@@ -60,18 +60,18 @@ size_t lower_bound(const std::vector<unsigned int> &arr, size_t left, size_t rig
     return left;
 }
 
-size_t find_min_id(const std::vector<unsigned int> &A, unsigned int arr_item) {
+size_t find_min_id(const std::vector<long long int> &A, long long int arr_item) {
     std::pair<size_t, size_t> bounds = exp_search(A, arr_item);
     return lower_bound(A, bounds.first, bounds.second, arr_item);
 }
 
-std::vector<size_t> find_indexes(const std::vector<unsigned int> &A, const std::vector<unsigned int> &B) {
+std::vector<size_t> find_indexes(const std::vector<long long int> &A, const std::vector<long long int> &B) {
     // assert(B.size());
 
     std::vector<size_t> id_arr;
     id_arr.reserve(B.size());
 
-    for (const unsigned int &arr_item : B) {
+    for (const long long int &arr_item : B) {
         id_arr.push_back(find_min_id(A, arr_item));
     }
 
@@ -83,8 +83,8 @@ int run_search_min(std::istream &input_stream, std::ostream &output_stream) {
     input_size(a_size, input_stream);
     input_size(b_size, input_stream);
 
-    std::vector<unsigned int> A(a_size);
-    std::vector<unsigned int> B(b_size);
+    std::vector<long long int> A(a_size);
+    std::vector<long long int> B(b_size);
 
     fill_arr(A, input_stream);
     fill_arr(B, input_stream);

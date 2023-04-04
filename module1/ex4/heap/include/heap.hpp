@@ -41,7 +41,7 @@ class Heap {
 
 template <typename T, typename Comparator>
 void Heap<T, Comparator>::_copy(T* dest, const T* src, size_t size) {
-    for (int i = 0; i != size; ++i) {
+    for (size_t i = 0; i != size; ++i) {
         dest[i] = src[i];
     }
 }
