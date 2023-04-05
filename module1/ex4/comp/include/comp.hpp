@@ -11,7 +11,7 @@ bool DefaultComparator<T>::operator()(const T& lhs, const T& rhs) const {
 }
 // inline функции должны быть определены в том же файле, где будут подставляться при вызове(т.е. нужно
 // вкключить определние в hpp, при Include определние функции уже будет в obj файле и линковщик найдет его)
-inline void f() { int a = 1; }
+//inline void f() { int a = 1; }
 
 // extern inline void f1();
 
