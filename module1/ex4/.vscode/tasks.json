@@ -6,7 +6,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
-                "-g", // для работы отладки
+                "-g", // для работы отладки //ctrl + shift + b - для сборки
                 "-Wextra",
                 "-Wall",
                 "-Werror",
