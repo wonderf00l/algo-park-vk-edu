@@ -30,8 +30,8 @@ int main() {
     int arr_[] = {0, 1, 2, 3};
     int arr__[] = {1};
     int arr___[] = {1, 2};
-    int* a = new int(5);
-    *a = 2;
+    // int* a = new int(5);
+    // *a = 2;
 
     Heap<int, DefaultComparator<int>> h1 = Heap<int>(arr, 9);
     Heap<int, DefaultComparator<int>> h2 = Heap<int, DefaultComparator<int>>(arr_, 4);

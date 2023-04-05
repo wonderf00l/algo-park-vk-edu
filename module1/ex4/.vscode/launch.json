@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "name": "C/C++: g++ build and debug active file",
+            "name": "C/C++: g++ build and DEBUG active file",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/src/ex4_1",
+            "program": "${workspaceFolder}/executable",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
