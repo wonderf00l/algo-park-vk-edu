@@ -9,7 +9,7 @@
                 "-g", // для работы отладки //ctrl + shift + b - для сборки
                 "-Wextra",
                 "-Wall",
-                "-Werror",
+                //"-Werror",
                 "-std=c++17",
                 //"-fsanitize=address",
                 "-I${workspaceFolder}/heap/include",
