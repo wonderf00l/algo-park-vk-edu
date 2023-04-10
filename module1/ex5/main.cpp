@@ -35,8 +35,8 @@ template <typename T, typename Comparator = DefaultComparator<T>>
 void merge(T* arr, T* buf, int left, int right, Comparator comp = Comparator()) {
     if (left < right) {
         int middle = (left + right) / 2;
-        merge(arr, buf, left, middle);
-        merge(arr, buf, middle + 1, right);
+        merge(arr, buf, left, middle, comp);
+        merge(arr, buf, middle + 1, right, comp);
 
         int buf_i = left;
         for (int i = left, j = middle + 1; i <= middle || j <= right;) {
@@ -54,10 +54,10 @@ void merge(T* arr, T* buf, int left, int right, Comparator comp = Comparator()) 
 }
 
 template <typename T, typename Comparator = DefaultComparator<T>>
-void merge_sort(T* arr, int size, Comparator = Comparator()) {
+void merge_sort(T* arr, int size, Comparator comp = Comparator()) {
     if (arr && size) {
         T* buf = new T[size];
-        merge(arr, buf, 0, size - 1);
+        merge(arr, buf, 0, size - 1, comp);
         delete[] buf;
     }
 }
@@ -102,7 +102,7 @@ int main() {
 
     input(seg_arr, points, N);
 
-    merge_sort<segment>(seg_arr, N);
+    //merge_sort<segment>(seg_arr, N);
     merge_sort<int>(points, N * 2);
     // std::cout << "seg: " << seg_arr[2].begin << std::endl;
 
