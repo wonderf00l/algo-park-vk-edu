@@ -21,7 +21,7 @@ int find_median_three(T* arr, int left, int right, Comparator comp = Comparator(
                                          : (comp(arr[first], arr[last]) ? first : last);
 }
 
-//max min funcs
+// max min funcs
 template <typename T, typename Comparator = DefaultComparator<T>>
 int marginal_id(T* arr, int size, Comparator comp = Comparator()) {
     int marginal_id = 0;
@@ -44,7 +44,7 @@ int partition(T* arr, int left, int right, Comparator comp = Comparator()) {
 
     int i = left + 1;
     int j = right;
-    
+
     std::cout << "left: " << left << "right: " << right << std::endl;
 
     while (i < j) {
@@ -73,8 +73,7 @@ void kth_stat(T* arr, int size, int k, Comparator comp = Comparator()) {
     if (!k) {
         std::swap(arr[0], arr[marginal_id(arr, size)]);
         return;
-    }
-    else if (k == size - 1) {
+    } else if (k == size - 1) {
         std::swap(arr[size - 1], arr[marginal_id(arr, size, IsGreaterComp<T>())]);
         return;
     }
@@ -87,12 +86,10 @@ void kth_stat(T* arr, int size, int k, Comparator comp = Comparator()) {
             comp);  // копирование left/right, в namespace kth_stat остаются неизменны после работы partition
         if (k == sorted_pos) {
             return;
-        }
-        else if (k < sorted_pos) {
+        } else if (k < sorted_pos) {
             right = sorted_pos - 1;
             // partition(arr, left, right, comp);
-        }
-        else {
+        } else {
             left = sorted_pos + 1;
             // partition(arr, left, right, comp);
         }
@@ -101,15 +98,13 @@ void kth_stat(T* arr, int size, int k, Comparator comp = Comparator()) {
 }
 
 template <typename T, typename Comparator = DefaultComparator<T>>
-void test_kth_stat(T* arr, int size, const T* expected, int k,
-                   Comparator comp = Comparator()) {
+void test_kth_stat(T* arr, int size, const T* expected, int k, Comparator comp = Comparator()) {
     kth_stat<T>(arr, size, k, comp);
     assert(arr[k] == expected[k]);
     std::cout << "test with k = " << k << " ok" << std::endl;
 
     // can be lambda instead
 }
-
 
 int main() {
     std::vector<int> vec = {4, 1, 10, 9, 7, 12, 8, 2, 15};
@@ -121,7 +116,7 @@ int main() {
     const int size = 9, size_ = 7;
 
     int arr[] = {4, 1, 10, 9, 7, 12, 8, 2, 15};
-    int sorted[] = {1, 2, 4, 7, 8 ,9 , 10, 12 ,15};
+    int sorted[] = {1, 2, 4, 7, 8, 9, 10, 12, 15};
 
     int arr_[] = {0, 10, 3, -1, 1, 20, 2};
     int sorted_[] = {-1, 0, 1, 2, 3, 10, 20};
@@ -130,13 +125,13 @@ int main() {
     // std::cout << id << ' ' <<  v1[id] << std::endl;
 
     for (size_t i = 0; i != size; ++i) {
-        test_kth_stat<int>(arr,size, sorted, i);
+        test_kth_stat<int>(arr, size, sorted, i);
     }
 
     std::cout << std::endl;
 
     for (size_t i = 0; i != size_; ++i) {
-        test_kth_stat<int>(arr_,size_, sorted_, i);
+        test_kth_stat<int>(arr_, size_, sorted_, i);
     }
     // test_kth_stat<int>(vec, expected, 0);
     // test_kth_stat<int>(vec, expected, 3);
@@ -160,5 +155,4 @@ int main() {
     // assert(arr[6] == sorted[6]);
     // kth_stat(arr, 9, 7);
     // assert(arr[7] == sorted[7]);
-
 }
