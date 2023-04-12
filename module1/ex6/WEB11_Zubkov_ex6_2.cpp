@@ -10,7 +10,7 @@ struct DefaultComparator {
 template <typename T, typename Comparator = DefaultComparator<T>>
 int find_median_three(T* arr, int left, int right, Comparator comp = Comparator()) {
     assert(left < right);
-    int middle = (left + right) / 2;  // нужно учитывать не абсолютную, а относительную позицию
+    int middle = (left + right) / 2;
     return comp(arr[left], arr[middle]) ? (comp(arr[middle], arr[right]) ? middle : right)
                                         : (comp(arr[left], arr[right]) ? left : right);
 }
@@ -30,9 +30,7 @@ int partition(T* arr, int left, int right, Comparator comp = Comparator()) {
         for (; j > pivot_id && comp(arr[j], arr[pivot_id]); --j) {
         };
 
-        if (j > pivot_id) {  // проверка должна быть: иначе j после цикла for может стать == pivot_id --> i
-                             // уменьшиться в резульате свапа и тем самым сьъедет влево на 1 позицию от
-                             // искомой, вне while произойдет некорректный swap
+        if (j > pivot_id) {
             std::swap(arr[i--], arr[j--]);
         }
     }
@@ -53,7 +51,7 @@ void kth_stat(T* arr, int size, int k, Comparator comp = Comparator()) {
     while (left < right) {
         int sorted_pos = partition(
             arr, left, right,
-            comp);  // копирование left/right, в namespace kth_stat остаются неизменны после работы partition
+            comp);
         if (k == sorted_pos) {
             return;
         } else if (k < sorted_pos) {
@@ -69,8 +67,6 @@ void test_kth_stat(T* arr, int size, const T* expected, int k, Comparator comp =
     kth_stat<T>(arr, size, k, comp);
     assert(arr[k] == expected[k]);
     std::cout << "test with k = " << k << " ok" << std::endl;
-
-    // can be lambda instead
 }
 
 int main() {
