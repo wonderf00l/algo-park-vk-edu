@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wextra -Wall -Werror -std=c++17 -fsanitize=address -rdynamic CMakeFiles/ex4.dir/src/main.cpp.o -o ex4  comp/libcomps.a heap/libheap.a comp/libcomps.a 

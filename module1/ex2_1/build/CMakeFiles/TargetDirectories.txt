@@ -1,0 +1,3 @@
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex2_1/build/CMakeFiles/ex2_1.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex2_1/build/CMakeFiles/edit_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex2_1/build/CMakeFiles/rebuild_cache.dir

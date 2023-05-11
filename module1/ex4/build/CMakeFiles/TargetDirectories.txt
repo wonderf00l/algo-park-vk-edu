@@ -1,0 +1,9 @@
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/CMakeFiles/ex4.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/CMakeFiles/edit_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/CMakeFiles/rebuild_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/comp/CMakeFiles/comps.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/comp/CMakeFiles/edit_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/comp/CMakeFiles/rebuild_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/heap/CMakeFiles/heap.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/heap/CMakeFiles/edit_cache.dir
+/home/exy/park/algorithms/algo-park-vk-edu/module1/ex4/build/heap/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/ex2_1.dir/c.cpp.o -o ex2_1 
