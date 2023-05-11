@@ -156,3 +156,24 @@ int main() {
     // kth_stat(arr, 9, 7);
     // assert(arr[7] == sorted[7]);
 }
+
+template <typename T, typename Comparator = DefaultComparator<T>>
+size_t find_median_three(std::vector<T>& data, size_t l, size_t r, Comparator comp = Comparator()) {
+    size_t half = (l + r - 1) / 2;  // середина списка
+    // выбор среднего из трех элементов
+    if (comp(data[l], data[half])) {
+        if (comp(data[r], data[l])) {
+            return l;
+        } else if (comp(data[r], data[half])) {
+            return r;
+        }
+        return half;
+    } else {
+        if (comp(data[r], data[half])) {
+            return half;
+        } else if (comp(data[r], data[l])) {
+            return r;
+        }
+        return l;
+    }
+}

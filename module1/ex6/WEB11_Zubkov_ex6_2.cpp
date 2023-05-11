@@ -49,9 +49,7 @@ void kth_stat(T* arr, int size, int k, Comparator comp = Comparator()) {
     int left = 0, right = size - 1;
 
     while (left < right) {
-        int sorted_pos = partition(
-            arr, left, right,
-            comp);
+        int sorted_pos = partition(arr, left, right, comp);
         if (k == sorted_pos) {
             return;
         } else if (k < sorted_pos) {
