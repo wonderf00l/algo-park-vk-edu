@@ -1,3 +1,11 @@
+/*Дано число N < 106 и последовательность целых чисел из [-231..231] длиной N.
+Требуется построить бинарное дерево, заданное наивным порядком вставки.
+Т.е., при добавлении очередного числа K в дерево с корнем root, если root→Key ≤ K, то узел K добавляется в правое поддерево
+root; иначе в левое поддерево root. Требования: Рекурсия запрещена. Решение должно поддерживать передачу функции сравнения
+снаружи.
+
+2_1. Выведите элементы в порядке in-order (слева направо).*/
+
 #include <functional>
 #include <iostream>
 #include <stack>
@@ -63,7 +71,7 @@ class BinaryTree {
     Node* root;
     Comparator comp;
 
-    void in_order(std::function<void(Node*)> processor) {  // func pointer
+    void in_order(std::function<void(Node*)> processor) {
         std::stack<Node*> stack;
         Node* curr = root;
 

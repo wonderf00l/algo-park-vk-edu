@@ -1,3 +1,8 @@
+/*4_2. Порядковые статистики. Дано число N и N строк. Каждая строка содержит команду добавления или удаления натуральных
+чисел, а также запрос на получение k-ой порядковой статистики. Команда добавления числа A задается положительным числом A,
+команда удаления числа A задается отрицательным числом “-A”. Запрос на получение k-ой порядковой статистики задается числом
+k. Требования: скорость выполнения запроса - O(log n).*/
+
 #include <algorithm>
 #include <cassert>
 #include <cmath>
@@ -37,10 +42,7 @@ class AVLTree {
     AVLTree& operator=(const AVLTree&) = delete;
     AVLTree& operator=(AVLTree&&) = delete;
 
-    ~AVLTree() {
-        clear(root);
-        root = nullptr;
-    };
+    ~AVLTree() { clear(root); };
 
     Value* find(const Key& key) { return _find(root, key); }
     const Value* find(const Key& key) const { return find(key); }
@@ -50,19 +52,15 @@ class AVLTree {
     void erase(const Key& key) { root = _erase(root, key); }
 
     Value kth_stat(size_t k) const {
-        assert(k < quantity(root));  // изначально, например, 100 элементов(размер корня)
+        assert(k < quantity(root));
         Node* curr = root;
-        size_t node_id = quantity(curr->left);  // начальный id - "середина дерева", т.е. кол-во элементов левого потомка
+        size_t node_id = quantity(curr->left);
 
         while (k != node_id) {
-            if (k < node_id) {  //если нужный id меньше текущего -- берем левого потомка, считаем кол-во элементов ее правого
-                                //потомка(сколько еще элементов больше новой текущей ноды), из текущего id вычитаем
-                                //получившееся значение
+            if (k < node_id) {
                 curr = curr->left;
                 node_id -= quantity(curr->right) + 1;
-            } else {  // если больше,то берем левого потомка текущей ноды, к имеющемуся размеру (текущий id, сколько
-                      // элементов "левее" curr, прибавляем кол-во элементов левого потомка новый текущей ноды), тем самым
-                      // получаем кол-во элементов, которые левее curr, то есть ее id в отсортированной последовательности
+            } else {
                 curr = curr->right;
                 node_id += quantity(curr->left) + 1;
             }
@@ -105,8 +103,7 @@ class AVLTree {
         } else {
             node->right = _insert(node->right, key, value);
         }
-        return balance(node);  // прокидываем отбалансированную ноду на выходе из каждого рекурсивного вызова, тем самым в
-                               // node->left/right будут записываться новые корни левого и правого поддеревьев
+        return balance(node);
     }
 
     Node* _erase(Node* node, const Key& key) {
@@ -121,8 +118,7 @@ class AVLTree {
             node->right = _erase(node->right, key);
         } else {
             Node* left = node->left;
-            Node* right = node->right;  // ищем мин элемент правого поддерева, ставим его на место  удаленного, паренту мин
-                                        // элемента ставим правого потомка мин элемента
+            Node* right = node->right;
 
             delete node;
 
@@ -132,8 +128,8 @@ class AVLTree {
 
             std::pair<Node*, Node*> nodes = find_and_remove_min(right);
 
-            Node* min_node = nodes.first;    // мин элемент
-            min_node->right = nodes.second;  // правый потомок мин элемента
+            Node* min_node = nodes.first;
+            min_node->right = nodes.second;
             min_node->left = left;
 
             return balance(min_node);
@@ -143,30 +139,11 @@ class AVLTree {
 
     std::pair<Node*, Node*> find_and_remove_min(Node* node) {
         if (!node->left) {
-            return std::make_pair(node, node->right);  // в последнем вызове возвращаем мин элемент и его правого потомка
+            return std::make_pair(node, node->right);
         }
         std::pair<Node*, Node*> nodes = find_and_remove_min(node->left);
-        node->left = nodes.second;  // привязываем паренту мин элемента(происходит при возвращении из последнего рекурсивного
-                                    // вызова) адрес правого потомка мин элемента
-        return std::make_pair(
-            nodes.first, balance(node));  // через все вызову прокидываем мин элемент и отбалансированную ноду, на
-                                          // промежуточынх вызовах будет происходить балансировка и перепривязка указателей
-    }
-
-    Node* find_min(Node* node) {
-        if (!node->left) {
-            return node;
-        }
-        return find_min(node->left);
-    }
-
-    Node* remove_min(Node* node) {
-        if (!node->left) {
-            return node->right;  // возврат правого поддерева минимального элемента
-        }
-        node->left = remove_min(
-            node->left);  // перепривязка указателя (затирание мин элемента) при выходе из последнего вызова функции
-        return balance(node);  // далее при разматывании стека возвращаем сбадансированную ножу и присваиваем ее node->left
+        node->left = nodes.second;
+        return std::make_pair(nodes.first, balance(node));
     }
 
     uint8_t height(Node* node) const { return node ? node->height : 0; }
@@ -228,13 +205,6 @@ class AVLTree {
 
 int main() {
     AVLTree<int, int> tree;
-
-    // for (int i = 0; i != 100; ++i) {
-    //     tree.insert(i, i);
-    // }
-    // for (int i = 50; i != 100; ++i) {
-    //     tree.erase(i);
-    // }
 
     unsigned int operations = 0;
 
