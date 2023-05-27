@@ -1,6 +1,6 @@
 #include "ListGraph.hpp"
 
-ListGraph::ListGraph(size_t vert_quantity) : graph(vert_quantity), vertices_quantity(0) {};
+ListGraph::ListGraph(size_t vert_quantity) : graph(vert_quantity), vertices_quantity(vert_quantity) {};
 ListGraph::ListGraph(const IGraph& other) {}
 
 

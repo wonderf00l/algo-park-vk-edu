@@ -1,2 +1,2 @@
-g++ -Wextra -Wall  -fsanitize=address -std=c++17 *.cpp *.hpp -o executable
+g++ -Wextra -Wall -std=c++17 -I. *.cpp -o executable
 ./executable
