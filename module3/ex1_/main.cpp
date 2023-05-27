@@ -3,7 +3,7 @@
 #include "ListGraph.hpp"
 
 void print(int vertex) {
-    std::cout << vertex << " ";
+    std::cout << vertex << "|||";
 }
 
 void dfs_aux(const IGraph& graph, std::vector<bool> visited, int vertex, std::function<void(int)> processor=print) {
@@ -46,11 +46,13 @@ int main() {
     // }
 
     // {
-    //     std::vector<int> verts = graph.GetPrevVertices(2);
+    //     std::vector<int> verts = graph.GetPrevVertices(3);
     //     for (int v : verts) {
     //         std::cout << v << " " ;
     //     }
-    // } // DEBUG
+    // }
+
+    std::cout << std::endl;
 
     dfs(graph);
     

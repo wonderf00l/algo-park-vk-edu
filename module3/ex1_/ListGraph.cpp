@@ -24,7 +24,7 @@ std::vector<int> ListGraph::GetPrevVertices(int vertex) const { // O(V*E)
             continue;
         }
         for (size_t linked_v = 0; linked_v != graph[v].size(); ++linked_v) {
-            if (static_cast<int>(linked_v) == vertex) {
+            if (graph[v][linked_v] == vertex) {
                 prev_vert.push_back(v);
                 break;
             }
