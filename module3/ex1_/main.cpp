@@ -3,12 +3,13 @@
 #include "ListGraph.hpp"
 
 void print(int vertex) {
-    std::cout << vertex << "|||";
+    std::cout << vertex << " ";
 }
 
-void dfs_aux(const IGraph& graph, std::vector<bool> visited, int vertex, std::function<void(int)> processor=print) {
+void dfs_aux(const IGraph& graph, std::vector<bool>& visited, int vertex, std::function<void(int)> processor=print) {
 
     processor(vertex);
+    // std::cout << vertex << std::endl;
     visited[vertex] = true; // обработка вершины
 
     for (int next_vert : graph.GetNextVertices(vertex)) {
@@ -38,21 +39,22 @@ int main() {
     graph.AddEdge(4,3);  
     graph.AddEdge(2,3);
 
-    // {
-    //     std::vector<int> verts = graph.GetNextVertices(2);
-    //     for (int v : verts) {
-    //         std::cout << v << " ";
-    //     }
-    // }
+    {
+        std::vector<int> verts = graph.GetNextVertices(2);
+        for (int v : verts) {
+            std::cout << v << " ";
+        }
+        std::cout << std::endl;
+    }
 
-    // {
-    //     std::vector<int> verts = graph.GetPrevVertices(3);
-    //     for (int v : verts) {
-    //         std::cout << v << " " ;
-    //     }
-    // }
+    {
+        std::vector<int> verts = graph.GetPrevVertices(3);
+        for (int v : verts) {
+            std::cout << v << " " ;
+        }
+        std::cout << std::endl;
 
-    std::cout << std::endl;
+    }
 
     dfs(graph);
     

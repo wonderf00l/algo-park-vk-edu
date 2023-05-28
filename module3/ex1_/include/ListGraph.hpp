@@ -1,8 +1,9 @@
+#pragma once
 #include "IGraph.hpp"
 
 class ListGraph : public IGraph {
 public:    
-    ListGraph(size_t vert_quantity);
+    explicit ListGraph(size_t vert_quantity);
     ListGraph(const IGraph& other);
 
     ~ListGraph();
