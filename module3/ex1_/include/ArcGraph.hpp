@@ -1,21 +1,20 @@
 #pragma once
 #include "IGraph.hpp"
 
-class ListGraph : public IGraph {
+class ArcGraph : public IGraph {
    public:
-    explicit ListGraph(size_t vert_quantity);
-    explicit ListGraph(const IGraph& other);
+    explicit ArcGraph(size_t vert_quantity);
+    explicit ArcGraph(const IGraph& other);
 
-    ~ListGraph();
+    ~ArcGraph();
 
     void AddEdge(int from, int to) override;
     int VerticesCount() const override;
-    // const std::vector<std::vector<int>>& GetGraph() const override;
 
     std::vector<int> GetNextVertices(int vertex) const override;
     std::vector<int> GetPrevVertices(int vertex) const override;
 
    private:
-    std::vector<std::vector<int>> graph;
+    std::vector<std::pair<int, int>> graph;
     size_t vertices_quantity;
 };

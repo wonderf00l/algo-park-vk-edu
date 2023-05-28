@@ -1,21 +1,20 @@
 #pragma once
 #include "IGraph.hpp"
 
-class ListGraph : public IGraph {
+class SetGraph : public IGraph {
    public:
-    explicit ListGraph(size_t vert_quantity);
-    explicit ListGraph(const IGraph& other);
+    explicit SetGraph(size_t vert_quantity);
+    explicit SetGraph(const IGraph& other);
 
-    ~ListGraph();
+    ~SetGraph();
 
     void AddEdge(int from, int to) override;
     int VerticesCount() const override;
-    // const std::vector<std::vector<int>>& GetGraph() const override;
 
     std::vector<int> GetNextVertices(int vertex) const override;
     std::vector<int> GetPrevVertices(int vertex) const override;
 
    private:
-    std::vector<std::vector<int>> graph;
+    std::vector<std::unordered_set<int>> graph;
     size_t vertices_quantity;
 };

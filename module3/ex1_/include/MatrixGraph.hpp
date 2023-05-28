@@ -1,16 +1,15 @@
 #pragma once
 #include "IGraph.hpp"
 
-class ListGraph : public IGraph {
+class MatrixGraph : public IGraph {
    public:
-    explicit ListGraph(size_t vert_quantity);
-    explicit ListGraph(const IGraph& other);
+    explicit MatrixGraph(size_t vert_quantity);
+    explicit MatrixGraph(const IGraph& other);
 
-    ~ListGraph();
+    ~MatrixGraph();
 
     void AddEdge(int from, int to) override;
     int VerticesCount() const override;
-    // const std::vector<std::vector<int>>& GetGraph() const override;
 
     std::vector<int> GetNextVertices(int vertex) const override;
     std::vector<int> GetPrevVertices(int vertex) const override;
