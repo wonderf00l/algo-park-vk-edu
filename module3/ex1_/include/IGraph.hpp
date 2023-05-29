@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <typeinfo>
 #include <unordered_set>
 #include <utility>
 #include <vector>

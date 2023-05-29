@@ -1,7 +1,9 @@
 #include "ArcGraph.hpp"
 
-ArcGraph::ArcGraph(size_t vert_quantity) : graph(vert_quantity), vertices_quantity(vert_quantity) {}
-ArcGraph::ArcGraph(const IGraph& other) : graph(other.VerticesCount()), vertices_quantity(other.VerticesCount()) {
+ArcGraph::ArcGraph(size_t vert_quantity) : graph(vert_quantity, std::make_pair(-1, -1)), vertices_quantity(vert_quantity) {}
+
+ArcGraph::ArcGraph(const IGraph& other)
+    : graph(other.VerticesCount(), std::make_pair(-1, -1)), vertices_quantity(other.VerticesCount()) {
     for (size_t vert = 0; vert != vertices_quantity; ++vert) {
         for (int next_vert : other.GetNextVertices(vert)) {
             AddEdge(vert, next_vert);

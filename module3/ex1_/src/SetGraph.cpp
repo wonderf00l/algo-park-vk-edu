@@ -1,6 +1,7 @@
 #include "SetGraph.hpp"
 
 SetGraph::SetGraph(size_t vert_quantity) : graph(vert_quantity), vertices_quantity(vert_quantity) {}
+
 SetGraph::SetGraph(const IGraph& other) : graph(other.VerticesCount()), vertices_quantity(other.VerticesCount()) {
     for (size_t vert = 0; vert != vertices_quantity; ++vert) {
         for (int next_vert : other.GetNextVertices(vert)) {
