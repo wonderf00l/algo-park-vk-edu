@@ -48,11 +48,10 @@ void bfs_aux(const IGraph& graph, std::vector<bool>& visited, std::vector<int>& 
              int vertex, int to) {
     std::queue<int> q;
 
-    if (vertex ==
-        to) {  // если оказалось так, что текущая вершина - целевая, значит, мы вошли в функцию в рамках внешнего цикла bfs.
+    if (vertex == to) {  // если оказалось так, что текущая вершина - целевая, значит, мы вошли в функцию в рамках внешнего цикла bfs.
                // Поскольку обход всегда начинается с корневой вершины, то если от корня к цели можно проложить маршрут через
-               // другие вершины, то вершина to должна оказаться в очереди, то есть она точно будет обработана во внутреннем
-               // цикле. А если пришли извне, значит, она обособлена от корневой вершины, оставляем занчение по умолчанию
+               // другие вершины, вершина to должна оказаться в очереди, то есть она точно будет обработана во внутреннем
+               // цикле. А если пришли извне, значит, она обособлена от корневой вершины, оставляем значение по умолчанию
         return;
     }
 
@@ -61,35 +60,26 @@ void bfs_aux(const IGraph& graph, std::vector<bool>& visited, std::vector<int>& 
     distance[vertex] = 0;
     dist_count[vertex] = 1;
 
-    // bool is_linked = 0;
-
     while (!q.empty()) {
         int v = q.front();
         q.pop();
 
         for (int next_vert : graph.GetNearByVertices(v)) {
-            // if (vertex == from &&
-            //     next_vert == to) {  // встретилось ли значение to при обходе, то есть связаны ли корень и целевая вершина
-            //     is_linked = 1;
-            // }
+
             if (!visited[next_vert]) {
                 q.push(next_vert);
                 visited[next_vert] = true;
                 distance[next_vert] = distance[v] + 1;
                 dist_count[next_vert] = dist_count[v];
             } else if (distance[v] + 1 <
-                       distance[next_vert]) {  // если снова пришли в вершину, но оказалось, что путь более короткий
-                distance[next_vert] = distance[v] + 1;  // берем меньшее расстояние, кол-во кратчайших путей также меняем на
-                                                        // то, которое у вершины с меньшим расстоянием
+                       distance[next_vert]) {
+                distance[next_vert] = distance[v] + 1;
                 dist_count[next_vert] = dist_count[v];
-            } else if (distance[v] + 1 == distance[next_vert]) {  // длина пути та же, что и от предыдущих вершин
+            } else if (distance[v] + 1 == distance[next_vert]) {
                 dist_count[next_vert] += dist_count[v];
             }
         }
     }
-    // if (vertex == from && !is_linked) {
-    //     dist_count[to] = 0;
-    // }
 }
 
 int bfs(const IGraph& graph, std::vector<int>& distance, std::vector<int>& dist_count, int from, int to) {

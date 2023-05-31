@@ -10,7 +10,6 @@ class ListGraph : public IGraph {
 
     void AddEdge(int from, int to) override;
     int VerticesCount() const override;
-    // const std::vector<std::vector<int>>& GetGraph() const override;
 
     std::vector<int> GetNextVertices(int vertex) const override;
     std::vector<int> GetPrevVertices(int vertex) const override;
